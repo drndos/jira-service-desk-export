@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+        <param name="atlassian-data-center-compatible">true</param>
+    </plugin-info>
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="jira-addon-sdexport"/>
+    <web-item key="jira-addon-sdexport-item" name="jira-addon-sdexport Item" section="servicedesk.portal.request.actions">
+        <description key="item.sdexport.desc">Export customer request.</description>
+        <label key="item.sdexport.label" />
+        <param name="iconClass">aui-icon icon-small aui-iconfont-export</param>
+        <link linkId="sdexport">/si/jira.issueviews:issue-word/$issue.key/${issue.key}.doc</link>
+    </web-item>
+    <!-- import from the product container -->
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+    <component-import key="ao" name="Active Objects service"
+                      interface="com.atlassian.activeobjects.external.ActiveObjects">
+        <description>Component to access Active Objects functionality from the plugin</description>
+    </component-import>
+</atlassian-plugin>
